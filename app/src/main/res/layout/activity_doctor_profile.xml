@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.CollapsingToolbarLayout
+        android:id="@+id/collapsing"
+        android:layout_width="match_parent"
+        android:fitsSystemWindows="true"
+        app:contentScrim="?android:attr/colorPrimary"
+        app:expandedTitleMarginEnd="64dp"
+        app:expandedTitleMarginStart="48dp"
+        app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+        android:padding="8dp"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:fitsSystemWindows="true"
+            android:src="@drawable/dokter"
+            app:layout_collapseMode="parallax"
+            android:layout_height="match_parent"/>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="pin"
+        app:title="@string/app_name"
+        android:background="@color/transparent"
+        app:titleTextColor="@color/colorPrimary"/>
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:layout_width="70dp"-->
+<!--            android:backgroundTint="@color/darkpastel"-->
+<!--            android:layout_height="70dp"/>-->
+
+
+
+    </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        android:background="#000"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="25dp"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textname"
+            android:layout_width="match_parent"
+            android:text="DR.Jesica Iskandar"
+            android:textColor="#fff"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/about_me"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/textname"
+            android:textColor="@color/colorPrimary"
+            android:text="About Me"/>
+
+        <TextView
+            android:id="@+id/kedua"
+            android:layout_width="wrap_content"
+            android:text="@string/loremipsum"
+            android:textColor="#fff"
+            android:layout_below="@+id/about_me"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/ketiga"
+            android:layout_width="wrap_content"
+            android:text="@string/loremipsum"
+            android:textColor="#fff"
+            android:layout_below="@+id/kedua"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/keempat"
+            android:layout_width="wrap_content"
+            android:text="@string/loremipsum"
+            android:textColor="#fff"
+            android:layout_below="@+id/ketiga"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

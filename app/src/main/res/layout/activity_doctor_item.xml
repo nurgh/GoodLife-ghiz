@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/layoutone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="8dp"
+            android:text="Welcome\nBack Doctor"
+            android:textColor="#000"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/texthello"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/textname"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:text="Hai, Doctor to Verify Your Account to Chat With\nPasien lets Entry"
+        android:layout_height="wrap_content"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/girl"
+            android:layout_marginStart="30dp"
+            app:civ_border_color="#fff"
+            app:civ_border_width="2dp"
+            android:layout_below="@+id/texthello"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"/>
+
+        <Button
+            android:id="@+id/choose_images_doctor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="260dp"
+            android:text="choose Images" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_nama_doctor"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/profile_image"
+            android:focusableInTouchMode="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/add_nama_doctor"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Nama"
+            android:inputType="textEmailAddress">
+
+        </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_email_doctor"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/edt_nama_doctor"
+            android:focusableInTouchMode="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/add_email_doctor"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="email"
+                android:inputType="textEmailAddress">
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edt_password_doctor"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/edt_email_doctor"
+        android:focusableInTouchMode="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/add_password_doctor"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Password"
+            android:inputType="textPassword">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/edt_password_doctor"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="60dp"
+            android:textSize="20dp"
+            android:text="Gender"
+            android:layout_height="wrap_content"/>
+
+        <RadioGroup
+            android:id="@+id/gender"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/edt_password_doctor"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="16dp">
+
+
+
+            <RadioButton
+                android:id="@+id/perempuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Perempuan" />
+
+            <RadioButton
+                android:id="@+id/laki-laki"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Laki-Laki" />
+
+
+        </RadioGroup>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_save"
+            android:onClick="saveDataDoctor"
+            android:layout_width="wrap_content"
+            android:backgroundTint="@color/darkpastel"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/ic_arrow_forward"
+            android:layout_height="wrap_content">
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+
+
+
+    </RelativeLayout>
+
+</LinearLayout>

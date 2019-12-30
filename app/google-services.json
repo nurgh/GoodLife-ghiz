@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "248052589537",
+    "firebase_url": "https://goodlife-7bd34.firebaseio.com",
+    "project_id": "goodlife-7bd34",
+    "storage_bucket": "goodlife-7bd34.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:248052589537:android:4a81fbcc1dac254f3ce8a0",
+        "android_client_info": {
+          "package_name": "com.android.goodlife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "248052589537-d75aqr6r38kua47evbj63cvlchne38ra.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.goodlife",
+            "certificate_hash": "52019e0f8cec9db708895dc419e6213a819548d8"
+          }
+        },
+        {
+          "client_id": "248052589537-aq09mfs3grk9gvrn60u6bsaaoflpha9q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcLci4PEKvChfTYjisReSfSp_dY1Mub3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "248052589537-aq09mfs3grk9gvrn60u6bsaaoflpha9q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

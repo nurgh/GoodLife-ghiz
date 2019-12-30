@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="backGroundPrimary">@color/background_material_light</color>
+
+    <color name="dialogContentColor">#767676</color>
+
+    <color name="cardFeaturedContent">#E0E0E0</color>
+
+    <color name="grey_hard">#96989A</color>
+    <color name="grey_medium">#BDBFC1</color>
+    <color name="grey_soft">#F5F5F5</color>
+
+    <color name="grey_bg">#EBEFF0</color>
+    <color name="grey_text">#222D31</color>
+    <color name="me_chat_bg">#FFE0B2</color>
+
+    <color name="warning">#ff9933</color>
+    <color name="error">#8b0000</color>
+    <color name="info">#000080</color>
+    <color name="success">#008000</color>
+
+    <color name="colortransparent">#00ff001C</color>
+    <color name="colortext">#222422</color>
+
+    <color name="ightazure">#83bcff</color>
+    <color name="palecyan">#97d2fb</color>
+    <color name="frenchskyblue">#898dff</color>
+    <color name="white">#FFFFFF</color>
+    <color name="Queenpink">#eccbd9</color>
+    <color name="darkpastel">#7d8cc4</color>
+    <color name="lightgrayishmagenta">#c490d1</color>
+
+</resources>

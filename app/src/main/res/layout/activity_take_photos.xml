@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/textphoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Take Photo"
+            android:textSize="20sp" />
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/user_profile"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content" />-->
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/girl"
+            app:civ_border_color="#fff"
+            app:civ_border_width="2dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="54dp"/>
+
+        <Button
+            android:id="@+id/choose_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="190dp"
+            android:text="choose Images" />
+
+    </androidx.cardview.widget.CardView>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabtake"
+        android:layout_width="wrap_content"
+        android:backgroundTint="@color/darkpastel"
+        android:layout_gravity ="bottom|end"
+        android:layout_height="wrap_content"/>
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
+
+
