@@ -18,14 +18,12 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.ViewCompat
-import androidx.recyclerview.widget.RecyclerView
-
-import com.google.firebase.database.*
-
 import com.android.goodlife.Adapter.ChatDetailListAdapter
+
 import com.android.goodlife.Data.SettingApi
 import com.android.goodlife.Data.Tools
 import com.android.goodlife.Model.ChatMessage
+import com.android.goodlife.Model.Doctor
 import com.android.goodlife.Model.Friend
 import com.android.goodlife.Untilty.Const
 import com.android.goodlife.Untilty.Const.Companion.NODE_IS_READ
@@ -38,6 +36,7 @@ import com.android.goodlife.Untilty.Const.Companion.NODE_SENDER_PHOTO
 import com.android.goodlife.Untilty.Const.Companion.NODE_TEXT
 import com.android.goodlife.Untilty.Const.Companion.NODE_TIMESTAMP
 import com.android.goodlife.Untilty.CustomToast
+import com.google.firebase.database.*
 import java.util.ArrayList
 import java.util.HashMap
 
@@ -63,7 +62,7 @@ class ChatDetailsActivity : AppCompatActivity() {
 
     private var listview: ListView? = null
     private var actionBar: ActionBar? = null
-    private var friend: Friend? = null
+    private var friend: Doctor? = null
     private val items = ArrayList<ChatMessage>()
     private var parent_view: View? = null
     internal lateinit var pfbd: ParseFirebaseData
@@ -88,7 +87,7 @@ class ChatDetailsActivity : AppCompatActivity() {
 
         // initialize conversation data
         val intent = intent
-        friend = intent.extras!!.getSerializable(KEY_FRIEND) as Friend
+        friend = intent.extras!!.getSerializable(KEY_FRIEND) as Doctor
         initToolbar()
 
         iniComponen()
@@ -160,7 +159,7 @@ class ChatDetailsActivity : AppCompatActivity() {
     }
 
     fun iniComponen() {
-        listview = findViewById(R.id.listview)
+        listview = findViewById(R.id.listview) as ListView
         btn_send = findViewById(R.id.btn_send) as Button
         et_content = findViewById(R.id.text_content) as EditText
         btn_send!!.setOnClickListener {
@@ -171,7 +170,7 @@ class ChatDetailsActivity : AppCompatActivity() {
             hm.put(NODE_TIMESTAMP, System.currentTimeMillis().toString())
             hm.put(NODE_RECEIVER_ID, friend!!.id)
             hm.put(NODE_RECEIVER_NAME, friend!!.name)
-            hm.put(NODE_RECEIVER_PHOTO, friend!!.photo)
+            hm.put(NODE_RECEIVER_PHOTO, friend!!.photos)
             hm.put(NODE_SENDER_ID, set.readSetting(Const.PREF_MY_ID)!!)
             hm.put(NODE_SENDER_NAME, set.readSetting(Const.PREF_MY_NAME)!!)
             hm.put(NODE_SENDER_PHOTO, set.readSetting(Const.PREF_MY_DP)!!)

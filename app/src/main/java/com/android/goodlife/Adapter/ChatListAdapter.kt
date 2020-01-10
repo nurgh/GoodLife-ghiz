@@ -13,7 +13,6 @@ import com.android.goodlife.Model.ChatMessage
 import com.android.goodlife.R
 import com.android.goodlife.Wighet.CircleTransform
 import com.squareup.picasso.Picasso
-
 import java.util.ArrayList
 
 

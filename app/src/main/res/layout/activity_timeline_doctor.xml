@@ -3,14 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe"
     android:layout_width="match_parent"
+    android:background="#91b0d5"
     android:layout_height="match_parent"
-    tools:context=".Fragment.TimelineFeed">
+    tools:context=".Fragment.TimelineFeedFragmentCust">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <!--  edit text to search the query -->
@@ -31,11 +39,14 @@
             android:textColorHint="@android:color/darker_gray"
             android:textSize="14sp" />
 
+
+
         <!-- recycler view to show search query timeline -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/search_timeline_recycler_view"
             android:layout_width="match_parent"
-            android:background="@color/white"
+            android:background="#91b0d5"
+            android:layout_marginBottom="10dp"
             android:layout_height="wrap_content" />
 
         <!-- empty label to show when no tweets available -->
@@ -48,6 +59,17 @@
 
     </LinearLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:id="@+id/add_timeline"
+        android:backgroundTint="@color/darkpastel"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="10dp"
+        android:src="@drawable/ic_add_black"
+        android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
 
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

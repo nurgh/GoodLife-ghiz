@@ -1,80 +1,154 @@
-package com.android.goodlife.Adapter
-
-import android.content.Context
-import android.os.Handler
-import android.view.LayoutInflater
-
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-
-import androidx.recyclerview.widget.RecyclerView
-
-
-import com.android.goodlife.Model.Doctor
-import com.android.goodlife.R
-import com.bumptech.glide.Glide
-
-
-
-class DoctorListAdapter(val doctorlist: List<Doctor>, val context: Context,  private val mListener: OnItemClickListener?) : RecyclerView.Adapter<DoctorListAdapter.Holder>() {
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.row_doctor_list, parent, false)
-        return Holder(view)
-    }
-
-    override fun getItemCount(): Int {
-        return doctorlist.size
-    }
-
-    override fun onBindViewHolder(holder: Holder, position: Int) {
-
-        holder.nama.text = doctorlist[position].name
-        holder.mail.text = doctorlist[position].email
-        Glide.with(context).load(doctorlist[position].photos).into(holder.image)
-
-
-
-
-
-    }
-
-     inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-         val nama = itemView.findViewById(R.id.name) as TextView
-         val mail = itemView.findViewById(R.id.email_doctor) as TextView
-         val image = itemView.findViewById(R.id.images) as ImageView
-         val lay = itemView.findViewById(R.id.lyt_parent1)as LinearLayout
-
-
-
-     }
-
-    interface OnItemClickListener {
-        fun onItemClick(view: View, viewModel: Doctor)
-    }
-
-    fun onClick(v: View?) {
-        if (onItemClickListener != null) {
-            Handler().postDelayed({
-                if (v != null) {
-                    onItemClickListener!!.onItemClick(v, v.tag as Doctor)
-                }
-            }, 200)
-        }
-    }
-
-    private var onItemClickListener: OnItemClickListener? = null
-
-    fun setOnItemClickListener(onItemClickListener: OnItemClickListener) {
-        this.onItemClickListener = onItemClickListener
-    }
-
-
-
-
-}
+//package com.android.goodlife.Adapter
+//
+//import android.content.Context
+//import android.view.LayoutInflater
+//import android.view.View
+//import android.view.ViewGroup
+//import android.view.animation.AnimationUtils
+//import android.widget.*
+//import androidx.recyclerview.widget.RecyclerView
+//import com.android.goodlife.Model.Friend
+//import com.android.goodlife.R
+//import com.android.goodlife.Wighet.CircleTransform
+//import com.squareup.picasso.Picasso
+//
+//import java.util.ArrayList
+//
+//
+//class DoctorListAdapter(private val mContext: Context, items: ArrayList<Friend>) : RecyclerView.Adapter<DoctorListAdapter.ViewHolder>(),
+//    Filterable {
+//
+//    private var original_items = ArrayList<Friend>()
+//    private var filtered_items: List<Friend> = ArrayList()
+//    private val mFilter = ItemFilter()
+//
+//    private var mOnItemClickListener: OnItemClickListener? = null
+//
+//    /**
+//     * Here is the key method to apply the animation
+//     */
+//    private var lastPosition = -1
+//
+//    interface OnItemClickListener {
+//        fun onItemClick(view: View, obj: Friend, position: Int)
+//    }
+//
+//    fun setOnItemClickListener(mItemClickListener: OnItemClickListener) {
+//        this.mOnItemClickListener = mItemClickListener
+//    }
+//
+//    init {
+//        original_items = items
+//        filtered_items = items
+//    }
+//
+//    inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+//        // each data item is just a string in this case
+//        var name: TextView
+//        var image: ImageView
+//        var lyt_parent: LinearLayout
+//
+//        init {
+//            name = v.findViewById<View>(R.id.name) as TextView
+//            image = v.findViewById<View>(R.id.image) as ImageView
+//            lyt_parent = v.findViewById<View>(R.id.lyt_parent) as LinearLayout
+//        }
+//    }
+//
+//    override fun getFilter(): Filter {
+//        return mFilter
+//    }
+//
+//
+//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorListAdapter.ViewHolder {
+//        // create a new view
+//        val v = LayoutInflater.from(parent.context).inflate(R.layout.row_friends, parent, false)
+//        // set the view's size, margins, paddings and layout parameters
+//        return ViewHolder(v)
+//    }
+//
+//    // Replace the contents of a view (invoked by the layout manager)
+//    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+//        val c = filtered_items[position]
+//        holder.name.text = c.name
+//
+//        if(c.photo == ""){
+//            Picasso
+//                .with(mContext)
+//                .load(R.drawable.unknown_avatar)
+//                .error(R.drawable.unknown_avatar)
+//                .placeholder(R.drawable.unknown_avatar)
+//                .resize(100, 100)
+//                .transform(CircleTransform())
+//                .into(holder.image)
+//
+//
+//        }else {
+//            Picasso
+//                .with(mContext)
+//                .load(c.photo)
+//                .error(R.drawable.unknown_avatar)
+//                .placeholder(R.drawable.unknown_avatar)
+//                .resize(100, 100)
+//                .transform(CircleTransform())
+//                .into(holder.image)
+//        }
+//
+//
+//
+//        // Here you apply the animation when the view is bound
+//        setAnimation(holder.itemView, position)
+//
+//        holder.lyt_parent.setOnClickListener { view ->
+//            if (mOnItemClickListener != null) {
+//                mOnItemClickListener!!.onItemClick(view, c, position)
+//            }
+//        }
+//    }
+//
+//    fun getItem(position: Int): Friend {
+//        return filtered_items[position]
+//    }
+//
+//    private fun setAnimation(viewToAnimate: View, position: Int) {
+//        // If the bound view wasn't previously displayed on screen, it's animated
+//        if (position > lastPosition) {
+//            val animation = AnimationUtils.loadAnimation(mContext, R.anim.slide_in_bottom)
+//            viewToAnimate.startAnimation(animation)
+//            lastPosition = position
+//        }
+//    }
+//
+//    // Return the size of your dataset (invoked by the layout manager)
+//    override fun getItemCount(): Int {
+//        return filtered_items.size
+//    }
+//
+//
+//    private inner class ItemFilter : Filter() {
+//        override fun performFiltering(constraint: CharSequence): Filter.FilterResults {
+//            val query = constraint.toString().toLowerCase()
+//
+//            val results = Filter.FilterResults()
+//            val list = original_items
+//            val result_list = ArrayList<Friend>(list.size)
+//
+//            for (i in list.indices) {
+//                val str_title = list[i].name
+//                if (str_title.toLowerCase().contains(query)) {
+//                    result_list.add(list[i])
+//                }
+//            }
+//
+//            results.values = result_list
+//            results.count = result_list.size
+//
+//            return results
+//        }
+//
+//        override fun publishResults(constraint: CharSequence, results: Filter.FilterResults) {
+//            filtered_items = results.values as List<Friend>
+//            notifyDataSetChanged()
+//        }
+//    }
+//}

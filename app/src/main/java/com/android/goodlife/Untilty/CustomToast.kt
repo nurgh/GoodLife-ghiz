@@ -41,7 +41,7 @@ class CustomToast(val context: Context) {
 
     fun showError(msg: String) {
         text.text = msg
-        icon.setImageResource(R.drawable.round_error_24)
+        icon.setImageResource(R.drawable.round_error)
         icon.setColorFilter(ContextCompat.getColor(context,
             R.color.error
         ), android.graphics.PorterDuff.Mode.MULTIPLY)
@@ -51,7 +51,7 @@ class CustomToast(val context: Context) {
 
     fun showInfo(msg: String) {
         text.text = msg
-        icon.setImageResource(R.drawable.round_info_24)
+        icon.setImageResource(R.drawable.round_info)
         icon.setColorFilter(ContextCompat.getColor(context,
             R.color.info
         ), android.graphics.PorterDuff.Mode.MULTIPLY)
@@ -61,7 +61,7 @@ class CustomToast(val context: Context) {
 
     fun showSuccess(msg: String) {
         text.text = msg
-        icon.setImageResource(R.drawable.round_success_24)
+        icon.setImageResource(R.drawable.round_success)
         icon.setColorFilter(ContextCompat.getColor(context,
             R.color.success
         ), android.graphics.PorterDuff.Mode.MULTIPLY)

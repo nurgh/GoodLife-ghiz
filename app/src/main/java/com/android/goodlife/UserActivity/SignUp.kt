@@ -13,7 +13,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import kotlinx.android.synthetic.main.custome_messager.view.*
 
 class SignUp : AppCompatActivity() {
 
@@ -38,7 +37,7 @@ class SignUp : AppCompatActivity() {
 
             val username = findViewById<EditText>(R.id.add_usernamesignup).text.toString()
             val  email = findViewById<EditText>(R.id.add_emailsignup).text.toString()
-            val password = findViewById<EditText>(R.id.add_passwordsignin).text.toString()
+            val password = findViewById<EditText>(R.id.add_passwordsignup).text.toString()
 
            if (email.isEmpty() || username.isEmpty()){
 
@@ -62,12 +61,11 @@ class SignUp : AppCompatActivity() {
                         }else{
 
                             Log.d(TAG, "Its Successfully")
-                            saveUsertoDatabaseFirebase()
+                            saveUsertoDatabaseFirebase(username,email,password)
 
                             Toast.makeText(this, "Anda Berhasil membuat Akun", Toast.LENGTH_LONG).show()
 
                             val intent = Intent(this, SignIn::class.java)
-                            intent.putExtra("username", username)
                             startActivity(intent)
                             finish()
 
@@ -81,15 +79,14 @@ class SignUp : AppCompatActivity() {
 
     }
 
-    private fun saveUsertoDatabaseFirebase(){
+    private fun saveUsertoDatabaseFirebase(username: String, email: String, password: String) {
 
-      val name = add_usernamesignup.text.toString()
-        val email = add_emailsignup.text.toString()
+
          val uid = FirebaseAuth.getInstance().uid.toString()
 
         val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
 
-        val users = Users(name,email, uid, "")
+        val users = Users(uid,username, email, "", password)
 
         ref.setValue(users)
             .addOnCompleteListener {

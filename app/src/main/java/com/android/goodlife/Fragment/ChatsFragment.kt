@@ -10,15 +10,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.goodlife.Adapter.ChatListAdapter
+
 import com.android.goodlife.ChatDetailsActivity
 import com.android.goodlife.Data.SettingApi
-import com.android.goodlife.MainActivityHome
+import com.android.goodlife.DoctorActivity.MainActivityHome
 import com.android.goodlife.Model.ChatMessage
 import com.android.goodlife.ParseFirebaseData
 import com.android.goodlife.R
 import com.android.goodlife.Untilty.Const
 import com.android.goodlife.Wighet.DividerItemDecoration
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
 
 
@@ -28,8 +28,6 @@ class ChatsFragment : Fragment() {
     private var mLayoutManager: LinearLayoutManager? = null
     var mAdapter: ChatListAdapter? = null
     private var progressBar: ProgressBar? = null
-    lateinit var fab: FloatingActionButton
-
 
     internal lateinit var valueEventListener: ValueEventListener
     internal lateinit var ref: DatabaseReference
@@ -56,9 +54,6 @@ class ChatsFragment : Fragment() {
         recyclerView.layoutManager = mLayoutManager
         recyclerView.setHasFixedSize(true)
         recyclerView.addItemDecoration(DividerItemDecoration(activity!!, DividerItemDecoration.VERTICAL_LIST))
-
-        
-
 
 
         valueEventListener = object : ValueEventListener {
@@ -107,14 +102,10 @@ class ChatsFragment : Fragment() {
 
     }
 
-
-
     override fun onDestroy() {
         //Remove the listener, otherwise it will continue listening in the background
         //We have service to run in the background
         ref.removeEventListener(valueEventListener)
         super.onDestroy()
     }
-
-
 }

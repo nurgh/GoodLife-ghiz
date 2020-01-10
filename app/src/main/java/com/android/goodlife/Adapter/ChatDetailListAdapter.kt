@@ -1,4 +1,5 @@
 package com.android.goodlife.Adapter
+
 import android.content.Context
 import android.graphics.Color
 import android.view.Gravity
@@ -16,8 +17,7 @@ import com.android.goodlife.Model.ChatMessage
 import com.android.goodlife.R
 
 
-class ChatDetailListAdapter
-    (private val mContext: Context, private val mMessages: MutableList<ChatMessage>) : BaseAdapter() {
+class ChatDetailListAdapter(private val mContext: Context, private val mMessages: MutableList<ChatMessage>) : BaseAdapter() {
     internal var set: SettingApi
 
     init {

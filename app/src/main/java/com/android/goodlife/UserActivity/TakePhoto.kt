@@ -8,15 +8,13 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.android.goodlife.MainActivityHome
+import com.android.goodlife.MainActivityHomeCustomers
 import com.android.goodlife.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_take_photos.*
-import kotlinx.android.synthetic.main.custome_messager.view.*
-import kotlinx.android.synthetic.main.fragment_chat.*
 import java.util.*
 
 class TakePhoto : AppCompatActivity() {
@@ -91,7 +89,7 @@ class TakePhoto : AppCompatActivity() {
 
 
 
-        val intent = Intent(this, MainActivityHome::class.java)
+        val intent = Intent(this, MainActivityHomeCustomers::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
         finish()

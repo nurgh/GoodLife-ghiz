@@ -14,7 +14,12 @@ import com.android.goodlife.Untilty.Const.Companion.NODE_NAME
 import com.android.goodlife.Untilty.Const.Companion.NODE_PHOTO
 import com.android.goodlife.Data.SettingApi
 import com.android.goodlife.Data.Tools
-import com.android.goodlife.MainActivityHome
+import com.android.goodlife.DoctorActivity.SignIn_Doctor
+import com.android.goodlife.ForgotPasswordActivity
+import com.android.goodlife.DoctorActivity.MainActivityHome
+import com.android.goodlife.MainActivityHomeCustomers
+import com.android.goodlife.Model.Doctor
+import com.android.goodlife.Model.Users
 
 import com.android.goodlife.R
 import com.android.goodlife.Untilty.Const
@@ -30,7 +35,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_sign_in.*
-import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignIn : AppCompatActivity(), GoogleApiClient.OnConnectionFailedListener,
     View.OnClickListener{
@@ -52,71 +56,131 @@ class SignIn : AppCompatActivity(), GoogleApiClient.OnConnectionFailedListener,
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
+        textSignInDoctor.setOnClickListener {
+
+            val intent = Intent(this, SignIn_Doctor::class.java)
+            startActivity(intent)
+
+        }
 
 
+        forgot.setOnClickListener {
+
+            val intent = Intent(this, ForgotPasswordActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            finish()
+        }
 
 
-            val Masuk = findViewById<Button>(R.id.btn_login)
-            Masuk.setOnClickListener {
+        val Masuk = findViewById<Button>(R.id.btn_login)
+        Masuk.setOnClickListener {
 
-                Log.d("Sign in", "Aksi Sign In")
+            Log.d("Sign in", "Aksi Sign In")
 
-                val mail = findViewById<EditText>(R.id.email).text.toString()
-                val pass = findViewById<EditText>(R.id.password).text.toString()
+            val mail = findViewById<EditText>(R.id.email).text.toString()
+            val pass = findViewById<EditText>(R.id.password).text.toString()
 
-                if (mail.isEmpty() || pass.isEmpty() || pass.length < 8) {
+            if (mail.isEmpty() || pass.isEmpty() || pass.length < 8) {
 
-                    Toast.makeText(this, "please entry email password", Toast.LENGTH_LONG).show()
-                } else if (mail == "doctoradmin@gmail.com" || pass == "doctor") {
-                    FirebaseAuth.getInstance().signInWithEmailAndPassword(mail, pass)
-                        .addOnCompleteListener {
-                            if (!it.isSuccessful) {
-                                return@addOnCompleteListener
+                Toast.makeText(this, "please entry email password", Toast.LENGTH_LONG).show()
 
-                                val intent = Intent(this, SignIn::class.java)
-                                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                startActivity(intent)
-                                finish()
-                            } else {
+            } else {
 
-                                Toast.makeText(this, "Successfully sign in", Toast.LENGTH_LONG)
-                                    .show()
-                                val intent = Intent(this, MainActivityHome::class.java)
-                                intent.putExtra("email", mail)
-                                intent.putExtra("password", pass)
-                                intent.flags =
-                                    Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                startActivity(intent)
-                            }
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(mail, pass)
+                    .addOnCompleteListener {
+                        if (!it.isSuccessful) {
+                            Log.d("sign in", "Your fail Sign in")
+                            val intent = Intent(this, SignIn::class.java)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            val email = FirebaseAuth.getInstance().currentUser?.email.toString()
 
-                        }
-                        .addOnFailureListener {
-                            Log.d("SignIn", "Failed login : ${it.message}")
-                            Toast.makeText(this, "Email and Password incorrect", Toast.LENGTH_LONG)
+                            ref = FirebaseDatabase.getInstance().getReference("doctor")
+
+                            ref.addListenerForSingleValueEvent(object : ValueEventListener {
+                                override fun onCancelled(p0: DatabaseError) {
+
+                                }
+
+                                override fun onDataChange(p0: DataSnapshot) {
+                                    for (cekdata in p0.children) {
+                                        var docter = cekdata.getValue(Doctor::class.java)
+                                        if (email.equals(docter!!.email)) {
+
+                                            val intent = Intent(
+                                                this@SignIn,
+                                                MainActivityHome::class.java
+                                            )
+                                            startActivity(intent)
+                                            finish()
+
+                                            Toast.makeText(
+                                                this@SignIn,
+                                                "hello ${email}",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                    }
+                                }
+
+                            })
+                            Log.d(
+                                "Sign In",
+                                "Your succcessfully Sign In ${ref}")
+                            val intent =
+                                Intent(this@SignIn, TakePhoto::class.java)
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            startActivity(intent)
+                            finish()
+
+                            Toast.makeText(
+                                this@SignIn,
+                                "Successfully Sign Up",
+                                Toast.LENGTH_LONG)
                                 .show()
-                        }
 
-                } else {
 
-                    FirebaseAuth.getInstance().signInWithEmailAndPassword(mail, pass)
-                        .addOnCompleteListener {
-                            if (!it.isSuccessful) {
 
-                                Log.d("sign in", "Your fail Sign in")
-                                val intent = Intent(this, SignIn::class.java)
-                                startActivity(intent)
-                                finish()
-                            } else {
 
-                                Log.d("Sign In", "Your succcessfully Sign In")
-                                Toast.makeText(this, "Successfully Sign Up", Toast.LENGTH_LONG)
-                                    .show()
-                                val intent = Intent(this, TakePhoto::class.java)
-                                intent.flags =
-                                    Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                startActivity(intent)
-                                finish()
+//                                val ref2 = FirebaseDatabase.getInstance().getReference("Users")
+//
+//                                ref2.addListenerForSingleValueEvent(object : ValueEventListener{
+//                                    override fun onCancelled(p0: DatabaseError) {
+//
+//                                    }
+//
+//                                    override fun onDataChange(p0: DataSnapshot) {
+//                                        for (Checking in p0.children) {
+//
+//                                            var user = Checking.getValue(Users::class.java)
+//                                            val photo = user?.photo
+//
+//                                            if (photo != null) {
+//
+//
+//                                                val intent = Intent(
+//                                                    this@SignIn,
+//                                                    MainActivityHomeCustomers::class.java
+//                                                )
+//                                                startActivity(intent)
+//                                                finish()
+//
+//                                            }
+//                                        }
+
+
+//
+//                                    }
+//
+//                                })
+//
+//
+//
                             }
+
                         }
                         .addOnFailureListener {
 

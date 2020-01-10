@@ -37,9 +37,9 @@ class ParseFirebaseData {
         var id: String? = null
         var photo: String? = null
         for (data in dataSnapshot.children) {
-            name = data.child(NODE_NAME).value!!.toString()
-            id = data.child(NODE_ID).value!!.toString()
-            photo = data.child(NODE_PHOTO).value!!.toString()
+            name = data.child(NODE_NAME).value.toString()
+            id = data.child(NODE_ID).value.toString()
+            photo = data.child(NODE_PHOTO).value.toString()
 
             if (!set.readSetting(Const.PREF_MY_ID).equals(id))
                 frnds.add(Friend(id, name, photo))

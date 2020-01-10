@@ -14,24 +14,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity"></activity>
+        <activity android:name=".LayoutOne"></activity>
+        <activity android:name=".AddTimelineDoctor" />
         <activity android:name=".DoctorActivity.DoctorFile" />
-        <activity android:name=".Fragment.Doctor" />
-        <activity android:name=".Fragment.ScheduleDoctor" />
+        <activity android:name=".Fragment.DoctorFragment" />
+        <activity android:name=".Fragment.ScheduleDoctorFragmentCust" />
         <activity
             android:name=".SelectFriendActivity"
             android:label="Select Doctor" />
         <activity
             android:name=".ChatDetailsActivity"
             android:label="List" />
-        <activity android:name=".Fragment.TimelineFeed" />
+        <activity android:name=".Fragment.TimelineFeedFragmentCust" />
         <activity android:name=".UserActivity.FormUser" />
 
         <service
             android:name=".Service.NotificationService"
             android:exported="true"
             android:label="Poll Messages"
-            android:permission="android.permission.BIND_JOB_SERVICE"></service>
+            android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
             android:name=".Service.FirebaseMsgServices"
             android:exported="false">
@@ -47,10 +48,15 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".MainActivityHome" />
-        <activity android:name=".UserActivity.TakePhoto"/>
+        <activity android:name=".DoctorActivity.MainActivityHome" />
+        <activity android:name=".DoctorActivity.DoctorAccout" />
+        <activity android:name=".ForgotPasswordActivity" />
+        <activity android:name=".UserActivity.TakePhoto" />
         <activity android:name=".UserActivity.SignUp" />
-        <activity android:name=".DoctorActivity.DoctorAccout">
+        <activity android:name=".UserActivity.SignIn" />
+        <activity android:name=".DoctorActivity.SignIn_Doctor"/>
+        <activity android:name=".MainActivityHomeCustomers" />
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

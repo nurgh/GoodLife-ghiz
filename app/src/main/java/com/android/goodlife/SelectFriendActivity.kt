@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.goodlife.Adapter.FriendListAdapter
 import com.android.goodlife.Data.Tools
+import com.android.goodlife.Model.Doctor
 import com.android.goodlife.Model.Friend
 import com.android.goodlife.Untilty.CustomToast
 import com.android.goodlife.Wighet.DividerItemDecoration
@@ -27,7 +28,7 @@ class SelectFriendActivity: AppCompatActivity() {
     private var mAdapter: FriendListAdapter? = null
     internal lateinit var friendList: List<Friend>
 
-    val USERS_CHILD = "users"
+    val USERS_CHILD = "Doctor"
     internal lateinit var pfbd: ParseFirebaseData
 
     override fun onCreate(savedInstanceState: Bundle?) {

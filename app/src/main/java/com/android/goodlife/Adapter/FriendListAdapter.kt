@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
+
 import com.android.goodlife.Model.Friend
 import com.android.goodlife.R
 import com.android.goodlife.Wighet.CircleTransform
-import com.squareup.picasso.Picasso
-
 import java.util.ArrayList
 
 
@@ -71,28 +71,14 @@ class FriendListAdapter(private val mContext: Context, items: ArrayList<Friend>)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val c = filtered_items[position]
         holder.name.text = c.name
-
-        if(c.photo == ""){
-            Picasso
-                .with(mContext)
-                .load(R.drawable.unknown_avatar)
-                .error(R.drawable.unknown_avatar)
-                .placeholder(R.drawable.unknown_avatar)
-                .resize(100, 100)
-                .transform(CircleTransform())
-                .into(holder.image)
-        }else{
-            Picasso
-                .with(mContext)
-                .load(c.photo)
-                .error(R.drawable.unknown_avatar)
-                .placeholder(R.drawable.unknown_avatar)
-                .resize(100, 100)
-                .transform(CircleTransform())
-                .into(holder.image)
-        }
-
-
+        Picasso
+            .with(mContext)
+            .load(c.photo)
+            .error(R.drawable.unknown_avatar)
+            .placeholder(R.drawable.unknown_avatar)
+            .resize(100, 100)
+            .transform(CircleTransform())
+            .into(holder.image)
 
         // Here you apply the animation when the view is bound
         setAnimation(holder.itemView, position)

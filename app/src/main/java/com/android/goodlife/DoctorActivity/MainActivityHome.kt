@@ -1,4 +1,4 @@
-package com.android.goodlife
+package com.android.goodlife.DoctorActivity
 
 import android.app.job.JobInfo
 import android.app.job.JobScheduler
@@ -12,28 +12,26 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.Fragment
 
 import com.android.goodlife.Data.Tools
-import com.android.goodlife.Fragment.ChatsFragment
-import com.android.goodlife.Fragment.Doctor
-import com.android.goodlife.Fragment.ScheduleDoctor
-import com.android.goodlife.Fragment.TimelineFeed
+import com.android.goodlife.Fragment.*
+import com.android.goodlife.R
+import com.android.goodlife.SelectFriendActivity
 import com.android.goodlife.Service.NotificationService
 
 import com.android.goodlife.Untilty.CustomToast
 import com.android.goodlife.UserActivity.SignIn
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MainActivityHome : AppCompatActivity() {
+class MainActivityHome : AppCompatActivity(),
+    BottomNavigationView.OnNavigationItemSelectedListener {
 
     private var toolbar: Toolbar? = null
     internal lateinit var mJobScheduler: JobScheduler
-    lateinit var chatsFragment: ChatsFragment
-    lateinit var timelineFeed: TimelineFeed
-    lateinit var scheduleDoctor: ScheduleDoctor
-    lateinit var doctor: Doctor
+    lateinit var doctor: DoctorFragment
 
 
 
@@ -41,59 +39,16 @@ class MainActivityHome : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        bn_main.setOnNavigationItemSelectedListener { item ->
-            when(item.itemId){
-                R.id.Chat -> {
-                    chatsFragment = ChatsFragment()
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.frame_layout, chatsFragment)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
-                }
 
-
-                R.id.Timelinefeed -> {
-                    timelineFeed = TimelineFeed()
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.frame_layout, timelineFeed)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
-                }
-
-                R.id.Schedule -> {
-                    scheduleDoctor = ScheduleDoctor()
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.frame_layout, scheduleDoctor)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
-                }
-
-                R.id.Profile -> {
-                    doctor = Doctor()
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.frame_layout, doctor)
-                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .commit()
-                }
-
-            }
-            true
-        }
-
+        loadFragment(TimelineFeedFragmentCust())
+        bn_main.setOnNavigationItemSelectedListener(this)
 //        untuk menggunkana shadow
 
         val actionBar = getSupportActionBar()
         actionBar?.elevation = 0f
 
-
-
         toolbar = findViewById(R.id.toolbar) as Toolbar
         prepareActionBar(toolbar)
-        initComponent()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // for system bar in marshmellow
@@ -113,15 +68,6 @@ class MainActivityHome : AppCompatActivity() {
         }
     }
 
-    private fun initComponent() {
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        val ctf = ChatsFragment()
-        //icf.setRetainInstance(true);
-        fragmentTransaction.add(R.id.main_container, ctf, "Chat History")
-        fragmentTransaction.commit()
-
-    }
 
     private fun prepareActionBar(toolbar: Toolbar?) {
         setSupportActionBar(toolbar)
@@ -152,7 +98,6 @@ class MainActivityHome : AppCompatActivity() {
             R.id.action_select_friends -> {
                 val intent = Intent(this, SelectFriendActivity::class.java)
                 startActivity(intent)
-                finish()
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
@@ -173,6 +118,27 @@ class MainActivityHome : AppCompatActivity() {
 
     override fun onBackPressed() {
         doExitApp()
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        var fragment : Fragment? = null
+        when(item.itemId){
+
+            R.id.Timelinefeed -> fragment = TimelineFeedFragment()
+            R.id.Chat -> fragment = ChatsFragment()
+            R.id.Schedule -> fragment = ScheduleDoctorFragment()
+            R.id.Profile -> fragment = ProfileFragment()
+        }
+        return loadFragment(fragment)
+    }
+
+    private fun loadFragment(fragment: Fragment?): Boolean {
+            if (fragment != null){
+
+                supportFragmentManager.beginTransaction().replace(R.id.frame_layout, fragment).commit()
+                return true
+            }
+        return false
     }
 
 
